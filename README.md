@@ -14,13 +14,29 @@ Mô hình này chỉ huấn luyện được khi máy có hỗ trợ GPU. Khuy�
 
 3. Tải tập dữ liệu video giám sát của nhóm [SNN-QA](https://drive.google.com/file/d/1MuEtb_FVnJFfZ33gPI0SLMcxUoXf50NF/view?usp=sharing) về máy, sau đó để các video vào thư mục theo đường dẫn `GRA-on-SurveillanceVQA/video_data`. Những file chứa câu hỏi đã có sẵn trong tương ứng từng thư mục `withUnknownDataset` và `withoutUnknownDataset`.
 
+4. Đổi tên các video để phục vụ tiền xử lý bằng đoạn code sau
+```
+import os
+video_folder_path = r'GRA-on-SurveillanceVQA/video_data'
+with open('GRA-on-SurveillanceVQA/video_name_mapping.txt', 'r') as f:
+    lines = f.readlines()
+    for l in lines:
+        l = l.rstrip()
+        input_fname = l.split(' ')[0]
+        output_fname = l.split(' ')[1]
+                
+        inputpath = os.path.join(video_folder_path, input_fname)
+        outputpath = os.path.join(video_folder_path, output_fname)
+        os.rename(inputpath, outputpath)
+```
 
-4. Cài đặt các thư viện cần thiết để chạy mô hình:
+
+5. Cài đặt các thư viện cần thiết để chạy mô hình:
 ```bash
 !pip install tensorflow-gpu==1.15.0
 !pip install sk_video==1.1.8
 ```
-5. Thay đổi thư mục đang làm việc
+6. Thay đổi thư mục đang làm việc
 ```
 %cd GRA-on-SurveillanceVQA/video_data
 ```
