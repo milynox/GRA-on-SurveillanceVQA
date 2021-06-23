@@ -148,10 +148,7 @@ def val(epoch, dataset, config, log_dir):
                     model.question_encode: [question],
                 }
                 prediction = sess.run(model.prediction, feed_dict=feed_dict)
-                print(prediction)
                 prediction = prediction[0]
-                
-                print(prediction)
                 
                 if answerset[prediction] == answer:
                     correct += 1
