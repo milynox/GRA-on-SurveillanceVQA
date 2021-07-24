@@ -41,9 +41,9 @@ with open('GRA-on-SurveillanceVQA/video_name_mapping.txt', 'r') as f:
 %cd GRA-on-SurveillanceVQA/video_data
 ```
 
-## Thí nghiệm trên tập dữ liệu hỏi-đáp (qa-dataset)
+## Thí nghiệm trên tập dữ liệu hỏi-đáp (qaDataset)
 ### Tiền xử lý video và câu hỏi
-Sao chép video vào thư mục `qa-dataset`
+Sao chép video vào thư mục `qaDataset`
 ```
 !mkdir qaDataset/video
 !cp -r video_data/* qaDataset/video
