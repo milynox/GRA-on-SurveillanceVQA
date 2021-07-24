@@ -41,22 +41,22 @@ with open('GRA-on-SurveillanceVQA/video_name_mapping.txt', 'r') as f:
 %cd GRA-on-SurveillanceVQA/video_data
 ```
 
-## Thí nghiệm trên tập dữ liệu withUnknown
+## Thí nghiệm trên tập dữ liệu hỏi-đáp (qa-dataset)
 ### Tiền xử lý video và câu hỏi
-Sao chép video vào thư mục `withUnknown`
+Sao chép video vào thư mục `qa-dataset`
 ```
-!mkdir withUnknownDataset/video
-!cp -r video_data/* withUnknownDataset/video
+!mkdir qaDataset/video
+!cp -r video_data/* qaDataset/video
 ```
 
 Sau đó dụng chạy tiền xử lý bằng lệnh:
 ```
-!python preprocess_SQADataset.py withUnknownDataset
+!python preprocess_SQADataset.py qaDataset
 ```
 
 ### Huấn luyện mô hình
 Sử dụng lệnh sau để huấn luyện mô hình
-Mặc dù dataset có tên là withUnknown nhưng tên thư mục dataset đã tiền xử lý là msvd-qa. Chúng tôi vẫn chưa chuyển đổi code đang định dạng phù hợp, xin thông cảm.
+Mặc dù dataset có tên là qaDataset nhưng tên thư mục dataset đã tiền xử lý là msvd-qa. Chúng tôi vẫn chưa chuyển đổi code đang định dạng phù hợp, xin thông cảm.
 ```
 !python run_gra.py --mode train --gpu 0 --log log/evqa --dataset msvd_qa --config 0
 ```
@@ -69,20 +69,4 @@ Sử dụng lệnh:
 !python run_gra.py --mode test --gpu 0 --log log/evqa --dataset msvd_qa --config 0
 ```
 ### Lưu kết quả từ mô hình
-Kết quả dự đoán là file `log/evqa/prediction.json`. Quá trình huấn luyện và đánh giá lần lượt là các file: `log/evqa/stats/train.json` và `log/evqa/stats/val.json`
-
-## Thí nghiệm trên tập dữ liệu withoutUnknown
-### Tiền xử lý video và câu hỏi
-Sao chép video vào thư mục `withoutUnknown`
-```
-!mkdir withoutUnknownDataset/video
-!cp -r video_data/* withoutUnknownDataset/video
-```
-
-Sau đó dụng chạy tiền xử lý bằng lệnh:
-```
-!python preprocess_SQADataset.py withoutUnknownDataset
-```
-
-### Huấn luyện, kiểm thử và lưu kết quả
-Các bước này giống hệt các bước được thực hiện với thí nghiệm trên tập dữ liệu `withUnknown`.
+Kết quả dự đoán là file `log/evqa/prediction.json`. Quá trình huấn luyện và đánh giá lần lượt là các file: `log/evqa/stats/train.json` và `log/evqa/stats/val.json`.
